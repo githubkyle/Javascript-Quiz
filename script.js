@@ -24,10 +24,6 @@ var PostScore = document.getElementById("posted-score");
 var score = 0;
 var Name = document.getElementById("form1").value;
 
-StartButton.addEventListener("click", function() {
-  Switcher.style.visible = true;
-});
-
 //This countdown function doesn't happen
 StartButton.addEventListener("click", countdown());
 
@@ -61,3 +57,4 @@ function countdown() {
     PostScore = score;
   }, 1000);
 }
+localStorage.setItem("highscores", JSON.stringify(score));
