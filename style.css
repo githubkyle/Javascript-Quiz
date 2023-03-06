@@ -1,4 +1,33 @@
-.Question {
+#Question {
   text-align: center;
   padding: 300px;
+  /*visibility: hidden;*/
+  /*display: inline-block;*/
+}
+#empty-space {
+  padding: 500px;
+}
+
+#timer {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+.header {
+  text-align: center;
+}
+.Starter {
+  padding: 50px;
+}
+
+#conclusion {
+  text-align: center;
+}
+
+#highscores {
+  text-align: center;
+}
+
+#saver {
+  margin-top: 10px;
 }
