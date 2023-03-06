@@ -3,15 +3,19 @@
   padding: 300px;
   /*visibility: hidden;*/
   /*display: inline-block;*/
+  display: inline-block;
+  vertical-align: middle;
 }
 #empty-space {
   padding: 500px;
 }
 
+#parent {
+  text-align: center;
+}
 #timer {
-  position: absolute;
-  right: 0px;
-  top: 0px;
+  display: inline-block;
+  vertical-align: middle;
 }
 .header {
   text-align: center;
