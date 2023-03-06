@@ -1,14 +1,27 @@
 var Switcher = document.getElementsByClassName("Question");
-var timerEl = document.getElementById("#timer");
-var StartButton = document.getElementById("#Starter");
+var timerEl = document.getElementById("timer");
+var StartButton = document.getElementById("Starter");
 var rightButtons = document.getElementsByClassName("right");
 var wrongButtons = document.getElementsByClassName("wrong");
 var Result = document.getElementsByClassName("result");
 var DisplayHighScore = document.getElementById("highscores");
 
+var mostRecentScore = localStorage.getItem("posted-score");
+var AllHighScores = JSON.parse(localStorage.getItem("highscores")) || [];
+
+saveHighScore = e => {
+  e.preventDefault();
+  const score = {
+    score: mostRecentScore,
+    name: Name.value
+  };
+  AllHighScores.push(score);
+  console.log(AllHighScores);
+};
+
+var PostScore = document.getElementById("posted-score");
 var score = 0;
 var Name = document.getElementById("form1").value;
-var PostScore = document.getElementById("posted-score");
 
 StartButton.addEventListener("click", function() {
   Switcher.style.visible = true;
