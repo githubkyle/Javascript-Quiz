@@ -10,16 +10,8 @@ var mostRecentScore = localStorage.getItem("posted-score");
 var AllHighScores = JSON.parse(localStorage.getItem("highscores")) || [];
 
 var score = 0;
-var highscore = localStorage.getItem("highscores");
 
-if (highscore !== null) {
-  if (score > highscore) {
-    localStorage.setItem("highscores", score);
-  }
-} else {
-  localStorage.setItem("highscores", score);
-}
-
+//connects the resulting score to display it to a page
 var PostScore = document.getElementById("posted-score");
 var score = 0;
 var Name = document.getElementById("form1").value;
