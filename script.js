@@ -9,15 +9,16 @@ var DisplayHighScore = document.getElementById("highscores");
 var mostRecentScore = localStorage.getItem("posted-score");
 var AllHighScores = JSON.parse(localStorage.getItem("highscores")) || [];
 
-saveHighScore = e => {
-  e.preventDefault();
-  const score = {
-    score: mostRecentScore,
-    name: Name.value
-  };
-  AllHighScores.push(score);
-  console.log(AllHighScores);
-};
+var score = 0;
+var highscore = localStorage.getItem("highscores");
+
+if (highscore !== null) {
+  if (score > highscore) {
+    localStorage.setItem("highscores", score);
+  }
+} else {
+  localStorage.setItem("highscores", score);
+}
 
 var PostScore = document.getElementById("posted-score");
 var score = 0;
@@ -27,6 +28,7 @@ StartButton.addEventListener("click", function() {
   Switcher.style.visible = true;
 });
 
+//This countdown function doesn't happen
 StartButton.addEventListener("click", countdown());
 
 function countdown() {
