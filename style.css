@@ -14,8 +14,15 @@
   text-align: center;
 }
 #timer {
-  display: inline-block;
-  vertical-align: middle;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+#result {
+  position: fixed;
+  left: 0;
+  top: 0;
 }
 .header {
   text-align: center;
