@@ -14,6 +14,7 @@ var W7 = document.getElementById("wrong7");
 var W8 = document.getElementById("wrong8");
 var Respite = document.getElementById("result");
 var DisplayHighScore = document.getElementById("highscores");
+const mostlyRecentScore = localStorage.getItem("mostRecentScore");
 
 var mostRecentScore = localStorage.getItem("posted-score");
 var AllHighScores = JSON.parse(localStorage.getItem("highscores")) || [];
@@ -69,19 +70,19 @@ W6.addEventListener("click", function() {
   timeLeft -= 5;
   Respite.textContent = "Wrong!";
   EndTimer();
-  PostScore.innerHTML(score);
+  PostScore.innerHTML = score;
 });
 W7.addEventListener("click", function() {
   timeLeft -= 5;
   Respite.textContent = "Wrong!";
   EndTimer();
-  PostScore.innerHTML(score);
+  PostScore.innerHTML = score;
 });
 W8.addEventListener("click", function() {
   timeLeft -= 5;
   Respite.textContent = "Wrong!";
   EndTimer();
-  PostScore.innerHTML(score);
+  PostScore.innerHTML = score;
 });
 R1.addEventListener("click", function() {
   Respite.textContent = "Correct!";
@@ -97,4 +98,16 @@ R3.addEventListener("click", function() {
   EndTimer();
 });
 StartButton.addEventListener("click", countdown);
+
+saveHighScore = e => {
+  console.log("clicked the save button");
+  e.preventDefault();
+
+  var UserHighscore = {
+    name: Name.value,
+    score: mostlyRecentScore
+  };
+  console.log(UserHighscore);
+};
+
 localStorage.setItem("highscores", JSON.stringify(score));
