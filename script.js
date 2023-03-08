@@ -13,11 +13,7 @@ var W6 = document.getElementById("wrong6");
 var W7 = document.getElementById("wrong7");
 var W8 = document.getElementById("wrong8");
 var Respite = document.getElementById("result");
-var DisplayHighScore = document.getElementById("highscores");
-const mostlyRecentScore = localStorage.getItem("mostRecentScore");
-
-var mostRecentScore = localStorage.getItem("posted-score");
-var AllHighScores = JSON.parse(localStorage.getItem("highscores")) || [];
+var SaveButton = document.getElementById("saver");
 
 //connects the resulting score to display it to a page
 var PostScore = document.getElementById("posted-score");
@@ -96,18 +92,56 @@ R3.addEventListener("click", function() {
   Respite.textContent = "Correct!";
   score++;
   EndTimer();
+  PostScore.innerHTML = score;
 });
 StartButton.addEventListener("click", countdown);
 
-saveHighScore = e => {
-  console.log("clicked the save button");
-  e.preventDefault();
+function submitForm() {
+  let input1 = document.getElementById("form1");
+  input1.addEventListener("click", () => {
+    input1.value = "";
+  });
+}
 
-  var UserHighscore = {
-    name: Name.value,
-    score: mostlyRecentScore
-  };
-  console.log(UserHighscore);
-};
+const NO_OF_HIGH_SCORES = 10;
+const HIGH_SCORES = "highScores";
+const highScoreString = localStorage.getItem(HIGH_SCORES);
+const highScores = JSON.parse(highScoreString) ?? [];
 
-localStorage.setItem("highscores", JSON.stringify(score));
+function checkHighScore(score) {
+  const highScores = JSON.parse(localStorage.getItem(HIGH_SCORES)) ?? [];
+  const lowestScore = highScores[NO_OF_HIGH_SCORES - 1]?.score ?? 0;
+
+  if (score > lowestScore) {
+    saveHighScore(score, highScores);
+  }
+}
+function saveHighScore(score, highScores) {
+  const newScore = { score, Name };
+  highScores.push(newScore);
+  highScores.sort((a, b) => b.score - a.score);
+  highScores.splice(NO_OF_HIGH_SCORES);
+  localStorage.setItem(HIGH_SCORES, JSON.stringify(highScores));
+}
+SaveButton.addEventListener("click", saveHighScore(score, highScores));
+
+{
+  const newScore = { score, Name };
+  highScores.push(newScore);
+  highScores.sort((a, b) => b.score - a.score);
+  highScores.splice(NO_OF_HIGH_SCORES);
+  localStorage.setItem(HIGH_SCORES, JSON.stringify(highScores));
+}
+
+highScores.map(score => "<li>${score.score} - ${score.name}");
+
+const highScoreList = document.getElementById(HIGH_SCORES);
+
+function showHighScores() {
+  const highScores = JSON.parse(localStorage.getItem(HIGH_SCORES)) ?? [];
+  const highScoreList = document.getElementById(HIGH_SCORES);
+
+  highScoreList.innerHTML = highScores
+    .map(score => "<li>${score.score} - ${score.name}")
+    .join("");
+}
