@@ -18,8 +18,6 @@ var DisplayHighScore = document.getElementById("highscores");
 var mostRecentScore = localStorage.getItem("posted-score");
 var AllHighScores = JSON.parse(localStorage.getItem("highscores")) || [];
 
-var score = 0;
-
 //connects the resulting score to display it to a page
 var PostScore = document.getElementById("posted-score");
 var score = 0;
@@ -42,8 +40,6 @@ function countdown() {
 
       clearInterval(timeInterval);
     }
-
-    $("#posted-score").text(score);
   }, 1000);
 }
 var EndTimer = function() {
@@ -73,19 +69,19 @@ W6.addEventListener("click", function() {
   timeLeft -= 5;
   Respite.textContent = "Wrong!";
   EndTimer();
-  $("#posted-score").text(score);
+  PostScore.innerHTML(score);
 });
 W7.addEventListener("click", function() {
   timeLeft -= 5;
   Respite.textContent = "Wrong!";
   EndTimer();
-  $("#posted-score").text(score);
+  PostScore.innerHTML(score);
 });
 W8.addEventListener("click", function() {
   timeLeft -= 5;
   Respite.textContent = "Wrong!";
   EndTimer();
-  $("#posted-score").text(score);
+  PostScore.innerHTML(score);
 });
 R1.addEventListener("click", function() {
   Respite.textContent = "Correct!";
@@ -99,7 +95,6 @@ R3.addEventListener("click", function() {
   Respite.textContent = "Correct!";
   score++;
   EndTimer();
-  $("#posted-score").text(score);
 });
 StartButton.addEventListener("click", countdown);
 localStorage.setItem("highscores", JSON.stringify(score));
