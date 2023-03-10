@@ -96,12 +96,12 @@ R3.addEventListener("click", function() {
 });
 StartButton.addEventListener("click", countdown);
 
-function submitForm() {
+var submissionOfScore = function submitForm() {
   let input1 = document.getElementById("form1");
   input1.addEventListener("click", () => {
     input1.value = "";
   });
-}
+};
 
 const NO_OF_HIGH_SCORES = 10;
 const HIGH_SCORES = "highScores";
