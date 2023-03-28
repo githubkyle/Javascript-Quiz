@@ -19,6 +19,9 @@ for (i = 0; i < ParsedScores.length; i++) {
   var PostingScore = document.createElement("p");
   PostingScore.textContent = Score;
   PutEmHere.appendChild(PostingScore);
+  var PostingName = document.createElement("p");
+  PostingName.textContent = Name;
+  PutEmHere.appendChild(PostingName);
 }
 
 function ClearNames() {
