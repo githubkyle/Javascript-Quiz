@@ -1,6 +1,9 @@
-var Switcher = document.getElementsByClassName("Question");
 var timerEl = document.getElementById("timer");
-var StartButton = document.getElementById("Starter");
+var Q1Q2 = document.getElementById("q1q2");
+var Q2Q3 = document.getElementById("q2q3");
+var Q1 = document.getElementById("q1");
+var Q2 = document.getElementById("q2");
+var Q3 = document.getElementById("q3");
 var R1 = document.getElementById("right1");
 var R2 = document.getElementById("right2");
 var R3 = document.getElementById("right3");
@@ -12,14 +15,19 @@ var W5 = document.getElementById("wrong5");
 var W6 = document.getElementById("wrong6");
 var W7 = document.getElementById("wrong7");
 var W8 = document.getElementById("wrong8");
-var Respite = document.getElementById("result");
-var SaveButton = document.getElementById("saver");
-
-//connects the resulting score to display it to a page
-var PostScore = document.getElementById("posted-score");
+var Ender = document.getElementById("endGame");
 var score = 0;
-var Name = document.getElementById("form1").value;
+var StartButton = document.getElementById("StartTime");
+var Respite = document.getElementById("result");
+var PostScore = document.getElementById("posted-score");
+var Name = document.getElementById("form1");
+var SaveButton = document.getElementById("saver");
+var HighScoresList = [];
+var ShowingScores = document.getElementById("all-scores");
 
+var EndTimer = function() {
+  timeLeft = 0;
+};
 var timeLeft = 55;
 function countdown() {
   console.log("high");
@@ -27,21 +35,17 @@ function countdown() {
   var timeInterval = setInterval(function() {
     if (timeLeft > 1) {
       timerEl.textContent = timeLeft + " seconds remaining";
-
       timeLeft--;
     } else if (timeLeft === 1) {
       timerEl.textContent = timeLeft + " second remaining";
       timeLeft--;
     } else {
       timerEl.textContent = "The game has ended";
-
       clearInterval(timeInterval);
     }
   }, 1000);
 }
-var EndTimer = function() {
-  timeLeft = 0;
-};
+
 W1.addEventListener("click", function() {
   timeLeft -= 5;
   Respite.textContent = "Wrong!";
@@ -94,54 +98,43 @@ R3.addEventListener("click", function() {
   EndTimer();
   PostScore.innerHTML = score;
 });
+
+function StartQ1() {
+  StartButton.hidden = true;
+  Q1.hidden = false;
+}
+
+function StartQ2() {
+  Q1.hidden = true;
+  Q2.hidden = false;
+}
+
+function StartQ3() {
+  Q2.hidden = true;
+  Q3.hidden = false;
+}
+
+function ShowScore() {
+  endGame.hidden = false;
+}
+
+const form = document.querySelector("form");
+
+function SaveHighScore() {
+  console.log(form);
+  var name = form.elements.name;
+  var Score = document.getElementById("posted-score");
+  var NewHighScore = {
+    Name: name.value,
+    Score: Score.textContent
+  };
+  HighScoresList.push(NewHighScore);
+  var SortedScores = HighScoresList.sort((a, b) => a.score - b.score);
+  var StringedScores = JSON.stringify(SortedScores);
+  console.log(StringedScores);
+  localStorage.setItem("highscores", StringedScores);
+}
 StartButton.addEventListener("click", countdown);
 
-var submissionOfScore = function submitForm() {
-  let input1 = document.getElementById("form1");
-  input1.addEventListener("click", () => {
-    input1.value = "";
-  });
-};
-
-const NO_OF_HIGH_SCORES = 10;
-const HIGH_SCORES = "highScores";
-const highScoreString = localStorage.getItem(HIGH_SCORES);
-const highScores = JSON.parse(highScoreString) ?? [];
-
-function checkHighScore(score) {
-  const highScores = JSON.parse(localStorage.getItem(HIGH_SCORES)) ?? [];
-  const lowestScore = highScores[NO_OF_HIGH_SCORES - 1]?.score ?? 0;
-
-  if (score > lowestScore) {
-    saveHighScore(score, highScores);
-  }
-}
-function saveHighScore(score, highScores) {
-  const newScore = { score, Name };
-  highScores.push(newScore);
-  highScores.sort((a, b) => b.score - a.score);
-  highScores.splice(NO_OF_HIGH_SCORES);
-  localStorage.setItem(HIGH_SCORES, JSON.stringify(highScores));
-}
-SaveButton.addEventListener("click", saveHighScore(score, highScores));
-
-{
-  const newScore = { score, Name };
-  highScores.push(newScore);
-  highScores.sort((a, b) => b.score - a.score);
-  highScores.splice(NO_OF_HIGH_SCORES);
-  localStorage.setItem(HIGH_SCORES, JSON.stringify(highScores));
-}
-
-highScores.map(score => "<li>${score.score} - ${score.name}");
-
-const highScoreList = document.getElementById(HIGH_SCORES);
-
-function showHighScores() {
-  const highScores = JSON.parse(localStorage.getItem(HIGH_SCORES)) ?? [];
-  const highScoreList = document.getElementById(HIGH_SCORES);
-
-  highScoreList.innerHTML = highScores
-    .map(score => "<li>${score.score} - ${score.name}")
-    .join("");
-}
+SaveButton.addEventListener("click", SaveHighScore);
+console.log(HighScoresList);
