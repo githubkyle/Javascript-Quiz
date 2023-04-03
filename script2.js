@@ -7,23 +7,24 @@ var ParsedScores = JSON.parse(GottenScores);
 
 console.log(ParsedScores);
 
-// ParsedScores.forEach(e => {
-//   console.log(`${e.score}`);
-// });
-
 for (i = 0; i < ParsedScores.length; i++) {
   var Score = ParsedScores[i].score;
-  console.log(Score);
+
   var Name = ParsedScores[i].name;
-  
+
+  var PostingName = document.createElement("p");
+  PostingName.textContent = Name;
+
   var PostingScore = document.createElement("p");
+
   PostingScore.textContent = Score;
+  PutEmHere.appendChild(PostingName);
   PutEmHere.appendChild(PostingScore);
 }
 
 function ClearNames() {
-  ParsedScores.value = [];
+  localStorage.setItem("highscores", "");
+  PutEmHere.innerHTML = "";
 }
 
 ClearList.addEventListener("click", ClearNames);
-// ScoresButton.addEventListener("click", DisplayingHighs);

@@ -19,10 +19,10 @@ var Ender = document.getElementById("endGame");
 var score = 0;
 var StartButton = document.getElementById("StartTime");
 var Respite = document.getElementById("result");
-var PostScore = document.getElementById("posted-score");
-var Name = document.getElementById("form1");
+var FinalScore = document.getElementById("posted-score");
+
 var SaveButton = document.getElementById("saver");
-var HighScoresList = [];
+
 var ShowingScores = document.getElementById("all-scores");
 
 var EndTimer = function() {
@@ -70,19 +70,19 @@ W6.addEventListener("click", function() {
   timeLeft -= 5;
   Respite.textContent = "Wrong!";
   EndTimer();
-  PostScore.innerHTML = score;
+  FinalScore.innerHTML = score;
 });
 W7.addEventListener("click", function() {
   timeLeft -= 5;
   Respite.textContent = "Wrong!";
   EndTimer();
-  PostScore.innerHTML = score;
+  FinalScore.innerHTML = score;
 });
 W8.addEventListener("click", function() {
   timeLeft -= 5;
   Respite.textContent = "Wrong!";
   EndTimer();
-  PostScore.innerHTML = score;
+  FinalScore.innerHTML = score;
 });
 R1.addEventListener("click", function() {
   Respite.textContent = "Correct!";
@@ -96,7 +96,7 @@ R3.addEventListener("click", function() {
   Respite.textContent = "Correct!";
   score++;
   EndTimer();
-  PostScore.innerHTML = score;
+  FinalScore.innerHTML = score;
 });
 
 function StartQ1() {
@@ -118,16 +118,22 @@ function ShowScore() {
   endGame.hidden = false;
 }
 
-const form = document.querySelector("form");
+// const form = document.querySelector("form");
+// var FinalScore = document.getElementById("posted-score");
+// var PlayerName = document.getElementById("form1").textContent;
 
 function SaveHighScore() {
-  console.log(form);
-  var name = form.elements.name;
-  var Score = document.getElementById("posted-score");
-  var NewHighScore = {
-    Name: name.value,
-    Score: Score.textContent
-  };
+  var HighScoresList = [];
+  if (localStorage.getItem("highscores")) {
+    HighScoresList = JSON.parse(localStorage.getItem("highscores"));
+  }
+  var NewHighScore = {};
+  // if get item high scores defined, then s
+  var PlayerName = document.getElementById("form1").value;
+  NewHighScore.name = PlayerName;
+  NewHighScore.score = score;
+  console.log(document.getElementById("form1"));
+  console.log(NewHighScore);
   HighScoresList.push(NewHighScore);
   var SortedScores = HighScoresList.sort((a, b) => a.score - b.score);
   var StringedScores = JSON.stringify(SortedScores);
@@ -137,4 +143,3 @@ function SaveHighScore() {
 StartButton.addEventListener("click", countdown);
 
 SaveButton.addEventListener("click", SaveHighScore);
-console.log(HighScoresList);
