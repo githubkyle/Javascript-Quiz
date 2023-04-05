@@ -1,36 +1,47 @@
 #timer {
-  position: fixed;
-  right: 0;
-  top: 0;
-}
-
-#result {
-  position: fixed;
-  right: 0;
-  top: 17px;
-}
-
-#questions {
-  text-align: center;
-}
-
-.header {
-  text-align: center;
-}
-
-#endGame {
-  text-align: center;
-}
-
-#all-scores {
-  text-align: center;
-  align-items: center;
-}
-
-#clearer {
-  text-align: center;
-}
-
-#StartTime {
-  text-align: center;
-}
+    /* position: fixed;
+    right: 0;
+    top: 0; */
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 45%;
+  }
+  
+  #result {
+    /* position: fixed;
+    right: 0;
+    top: 17px; */
+    margin: 0;
+    position: absolute;
+    top: 55%;
+    left: 48%;
+  }
+  
+  #questions {
+    text-align: center;
+  }
+  
+  .header {
+    text-align: center;
+  }
+  
+  #endGame {
+    text-align: center;
+  }
+  
+  #all-scores {
+    text-align: center;
+    align-items: center;
+    
+  }
+  
+  #clearer {
+    text-align: center;
+  }
+  
+  #startCenter{
+    text-align: center;
+  
+  }
+  
