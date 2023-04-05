@@ -10,9 +10,9 @@
   <body>
     <div id="timer"></div>
     <p id="result"></p>
-    <button id="StartTime" onclick="StartQ1()">
+    <div id="startCenter"><button id="StartTime" onclick="StartQ1()">
       Start Timer
-    </button>
+    </button></div>
     <div id="questions">
             <div id="q1" hidden>
                     
@@ -53,25 +53,136 @@
             <div id="q3" hidden>
                                 <p class="qtext">Commonly used data types do NOT include__:</p>
                                   <hr />
-                                  <button id="wrong6" onclick="ShowScore()">
+                                  <button id="wrong6">
                                     Strings
                                   </button>
-                                  <button id="right3" onclick="ShowScore()">
+                                  <button id="right3" >
                                    Booleans
                                   </button>
-                                  <button id="wrong7" onclick="ShowScore()">
+                                  <button id="wrong7" >
                                     Arrays
                                   </button>
-                                  <button id="wrong8" onclick="ShowScore()">
+                                  <button id="wrong8">
                                     Numbers
                                   </button>
+                                  <p><button id="q3q4" onclick="StartQ4()">
+                                    Next
+                                </button></p>
                                  </div>
+                                 <div id="q4" hidden>
+                                  <p class="qtext">How many letters are in JavaScript?</p>
+                                    <hr />
+                                    <button id="wrong9" >
+                                      7
+                                    </button>
+                                    <button id="right4">
+                                     10
+                                    </button>
+                                    <button id="wrong10">
+                                      11
+                                    </button>
+                                    <button id="wrong11">
+                                      2many
+                                    </button>
+                                    <p><button id="q4q5" onclick="StartQ5()">
+                                      Next
+                                  </button></p>
+                                   </div>
+                                   <div id="q5" hidden>
+                                    <p class="qtext">Inside which HTML element do we put the JavaScript?</p>
+                                      <hr />
+                                      <button id="wrong12" >
+                                        js
+                                      </button>
+                                      <button id="right5" >
+                                       script
+                                      </button>
+                                      <button id="wrong13" >
+                                        scripting
+                                      </button>
+                                      <button id="wrong14">
+                                        javascript
+                                      </button>
+                                      <p><button id="q5q6" onclick="StartQ6()">
+                                        Next
+                                    </button></p>
+                                     </div>
+                                     <div id="q6" hidden>
+                                      <p class="qtext">How do you create a function in JavaScript?</p>
+                                        <hr />
+                                        <button id="right6" >
+                                          function myFunction()
+                                        </button>
+                                        <button id="wrong15">
+                                         function:myFunction()
+                                        </button>
+                                        <button id="wrong16" >
+                                          function = myFunction()
+                                        </button>
+                                        <p><button id="q6q7" onclick="StartQ7()">
+                                          Next
+                                      </button></p>
+                                       </div>
+                                       <div id="q7" hidden>
+                                        <p class="qtext">How to write an IF statement for executing some code if "i" is NOT equal to 5?</p>
+                                          <hr />
+                                          <button id="wrong17" >
+                                            if i => 5
+                                          </button>
+                                          <button id="right7">
+                                           if (i != 5)
+                                          </button>
+                                          <button id="wrong18" >
+                                            if (i <> 5)
+                                          </button>
+                                          <button id="wrong19">
+                                            if i != 5 then
+                                          </button>
+                                          <p><button id="q7q8" onclick="StartQ8()">
+                                            Next
+                                        </button></p>
+                                         </div>
+                                         <div id="q8" hidden>
+                                          <p class="qtext">How does a FOR loop start?</p>
+                                            <hr />
+                                            <button id="wrong20" >
+                                              for (i = 0; i <= 5)
+                                            </button>
+                                            <button id="wrong21">
+                                             for i = 1 to 5
+                                            </button>
+                                            <button id="wrong22" >
+                                              for i while = 5
+                                            </button>
+                                            <button id="right8">
+                                              for (i = 0; i<=5; i++)
+                                            </button>
+                                            <p><button id="q8q9" onclick="StartQ9()">
+                                              Next
+                                          </button></p>
+                                           </div>
+                                           <div id="q9" hidden>
+                                            <p class="qtext">What is the correct way to write a JavaScript array?</p>
+                                              <hr />
+                                              <button id="wrong23" onclick="ShowScore()">
+                                                var colors = "red", "blue", "green"
+                                              </button>
+                                              <button id="right9" onclick="ShowScore()">
+                                               var colors = ["red", "blue", "green"]
+                                              </button>
+                                              <button id="wrong24" onclick="ShowScore()">
+                                                var colors = 1 = ("red"), 2 = ("blue"), 3 = ("green")
+                                              </button>
+                                              <button id="wrong25" onclick="ShowScore()">
+                                                var colors = (1:"red",2:"blue",3:"green")
+                                              </button>
+                                             </div>
     </div>
-   <div id="endGame" hidden> <p id="YourResult">
+   <div id="endGame" hidden> 
            
               <form >
                   <p>Your score is:</p>
-                  <p id="posted-score" data-type="score"></p>
+                  <p id="posted-score"></p>
                   Your name: <input type="text" id="form1" data-type="name" name="name"><br> 
                   <input id="saver" name="saver" type="button" value="Save" />
               </form>
