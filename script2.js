@@ -5,21 +5,26 @@ var ClearList = document.getElementById("clearer");
 var GottenScores = localStorage.getItem("highscores");
 var ParsedScores = JSON.parse(GottenScores);
 
-console.log(ParsedScores);
+var Sorted = ParsedScores.sort();
+var Reversed = Sorted.reverse();
 
 for (i = 0; i < ParsedScores.length; i++) {
   var Score = ParsedScores[i].score;
 
   var Name = ParsedScores[i].name;
 
-  var PostingName = document.createElement("p");
-  PostingName.textContent = Name;
+  var ScoreDiv = document.createElement("div");
+ScoreDiv.classList.add("ScoreDiv");
+  var PostingName = document.createElement("div");
+  PostingName.textContent = `Name: ${Name}`;
 
-  var PostingScore = document.createElement("p");
+  var PostingScore = document.createElement("div");
 
   PostingScore.textContent = Score;
-  PutEmHere.appendChild(PostingName);
-  PutEmHere.appendChild(PostingScore);
+
+  ScoreDiv.appendChild(PostingName)
+  ScoreDiv.appendChild(PostingScore);
+  PutEmHere.appendChild(ScoreDiv);
 }
 
 function ClearNames() {
